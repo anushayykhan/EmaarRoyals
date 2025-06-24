@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 23, 2025 at 03:41 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Jun 23, 2025 at 10:22 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,7 +55,7 @@ CREATE TABLE `bookings` (
   `Email` varchar(20) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   `Room` varchar(20) DEFAULT NULL,
-  `Room_No` int(20) DEFAULT NULL,
+  `Room_No` int(11) DEFAULT NULL,
   `Checkin` date DEFAULT NULL,
   `Checkout` date DEFAULT NULL,
   `Guest` varchar(20) DEFAULT NULL,
@@ -67,7 +67,11 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`Booking_id`, `Guest_id`, `Name`, `Email`, `Phone`, `Room`, `Room_No`, `Checkin`, `Checkout`, `Guest`, `Suite`) VALUES
-(1, 9, 'qwqwqw', 'qwqwqw@gmail.com', '19833828', '3 Rooms', 102, '0000-00-00', '0000-00-00', '3', 'Luxury suite');
+(1, NULL, 'Test Guest 1', 'guest1@test.com', '1234567890', '1 Room', 101, '2025-06-23', '2025-06-24', '1', 'Standard'),
+(2, NULL, 'Test Guest 2', 'guest2@test.com', '1234567890', '1 Room', 102, '2025-06-23', '2025-06-25', '1', 'Standard'),
+(3, NULL, 'Test Guest 3', 'guest3@test.com', '1234567890', '1 Room', 104, '2025-06-22', '2025-06-24', '1', 'Standard'),
+(4, NULL, 'Test Guest 4', 'guest4@test.com', '1234567890', '1 Room', 107, '2025-06-23', '2025-06-24', '1', 'Standard'),
+(5, NULL, 'Test Guest 5', 'guest5@test.com', '1234567890', '1 Room', 110, '2025-06-23', '2025-06-24', '1', 'Standard');
 
 -- --------------------------------------------------------
 
@@ -89,10 +93,10 @@ CREATE TABLE `inquiries` (
 --
 
 INSERT INTO `inquiries` (`id`, `name`, `email`, `phone`, `message`, `created_at`) VALUES
-(1, 'anushay', 'anushayy@gmail.com', '09284742918', 'gdgdhjdhghsdghjdghghjasgdhj', '2025-06-19 15:45:13'),
-(2, 'eshaal', 'eshaal@gmail.com', '012837464', 'oiuytrew', '2025-06-19 15:55:33'),
-(3, 'ayaan', 'ayaan@gmail.com', '097654256', 'great service', '2025-06-19 16:05:31'),
-(5, 'fatima', 'fatima@gmail.com', '0987676767', 'jhahjfhjshjdhjdshjsdhjdhjdshjsdhjd\r\nhjsdhdhjsdhjdhjsdhjdsjhsdjhsd', '2025-06-21 12:44:09');
+(1, 'anushay', 'anushayy@gmail.com', '09284742918', 'gdgdhjdhghsdghjdghghjasgdhj', '2025-06-19 22:45:13'),
+(2, 'eshaal', 'eshaal@gmail.com', '012837464', 'oiuytrew', '2025-06-19 22:55:33'),
+(3, 'ayaan', 'ayaan@gmail.com', '097654256', 'great service', '2025-06-19 23:05:31'),
+(5, 'fatima', 'fatima@gmail.com', '0987676767', 'jhahjfhjshjdhjdshjsdhjdhjdshjsdhjd\r\nhjsdhdhjsdhjdhjsdhjdsjhsdjhsd', '2025-06-21 19:44:09');
 
 -- --------------------------------------------------------
 
@@ -138,6 +142,27 @@ CREATE TABLE `rooms` (
   `room_number` int(10) DEFAULT NULL,
   `status` enum('free','maintenance') DEFAULT 'free'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `room_number`, `status`) VALUES
+(1, 101, 'free'),
+(2, 102, 'free'),
+(3, 103, 'free'),
+(4, 104, 'free'),
+(5, 105, 'maintenance'),
+(6, 106, 'free'),
+(7, 107, 'free'),
+(8, 108, 'free'),
+(9, 109, 'free'),
+(10, 110, 'maintenance'),
+(11, 111, 'free'),
+(12, 112, 'free'),
+(13, 113, 'free'),
+(14, 114, 'free'),
+(15, 115, 'maintenance');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +217,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `Booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
@@ -214,20 +239,7 @@ ALTER TABLE `reservations`
 -- Constraints for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`Guest_id`) REFERENCES `reservations` (`Id`);
-
---
--- Constraints for table `reservations`
---
-ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`inq_res_email`) REFERENCES `inquiries` (`email`);
-
---
--- Constraints for table `rooms`
---
-ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`id`) REFERENCES `bookings` (`Booking_id`),
-  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`room_number`) REFERENCES `bookings` (`Room_No`);
+  ADD CONSTRAINT `fk_booking_to_room` FOREIGN KEY (`Room_No`) REFERENCES `rooms` (`room_number`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
