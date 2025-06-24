@@ -74,18 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               <a class="nav-link active" href="index.html">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="rooms.php" id="dropdown04" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">Rooms</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="rooms.html">Room Videos</a>
-                <a class="dropdown-item" href="rooms.html">Presidential Room</a>
-                <a class="dropdown-item" href="rooms.html">Luxury Room</a>
-                <a class="dropdown-item" href="rooms.html">Deluxe Room</a>
+                <a class="dropdown-item" href="rooms.php">Room Videos</a>
+                <a class="dropdown-item" href="rooms.php">Presidential Room</a>
+                <a class="dropdown-item" href="rooms.php">Luxury Room</a>
+                <a class="dropdown-item" href="rooms.php">Deluxe Room</a>
               </div>
 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.php">Contact</a>
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus illo similique natus, a
               recusandae? Dolorum, unde a quibusdam est? Corporis deleniti obcaecati quibusdam inventore fuga eveniet!
               Qui delectus tempore amet!</p>
-            <p><a href="about.html" class="btn btn-primary btn-sm">More About Us</a></p>
+            <p><a href="about.php" class="btn btn-primary btn-sm">More About Us</a></p>
           </div>
         </div>
         <div class="col-md-1"></div>

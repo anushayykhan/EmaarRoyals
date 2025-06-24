@@ -70,17 +70,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
+                <a class="nav-link dropdown-toggle" href="rooms.php" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="rooms.html">Room Videos</a>
-                  <a class="dropdown-item" href="rooms.html">Presidential Room</a>
-                  <a class="dropdown-item" href="rooms.html">Luxury Room</a>
-                  <a class="dropdown-item" href="rooms.html">Deluxe Room</a>
+                  <a class="dropdown-item" href="rooms.php">Room Videos</a>
+                  <a class="dropdown-item" href="rooms.php">Presidential Room</a>
+                  <a class="dropdown-item" href="rooms.php">Luxury Room</a>
+                  <a class="dropdown-item" href="rooms.php">Deluxe Room</a>
                 </div>
 
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.php">Contact</a>
