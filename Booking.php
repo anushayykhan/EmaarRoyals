@@ -10,8 +10,8 @@ $result = mysqli_query($conn, $sql);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
-  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+ <title>EmaarRoyals</title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="./assets/css/styles.min.css" />
 
   <style>
@@ -74,7 +74,7 @@ $result = mysqli_query($conn, $sql);
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./admin-dash.php" aria-expanded="false">
-                <i class="ti ti-atom"></i>
+                <i class="ti ti-receipt"></i>
                 <span class="hide-menu">Reservations</span>
               </a>
             </li>
@@ -88,7 +88,7 @@ $result = mysqli_query($conn, $sql);
               <a class="sidebar-link justify-content-between" href="room_status.php" aria-expanded="false">
                 <div class="d-flex align-items-center gap-3">
                   <span class="d-flex">
-                    <i class="ti ti-mail"></i>
+                    <i class="ti ti-key"></i>
                   </span>
                   <span class="hide-menu">Rooms</span>
                 </div>
@@ -153,22 +153,7 @@ $result = mysqli_query($conn, $sql);
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link " href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ti ti-bell"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a>
-              <div class="dropdown-menu dropdown-menu-animate-up" aria-labelledby="drop1">
-                <div class="message-body">
-                  <a href="javascript:void(0)" class="dropdown-item">
-                    Item 1
-                  </a>
-                  <a href="javascript:void(0)" class="dropdown-item">
-                    Item 2
-                  </a>
-                </div>
-              </div>
-            </li>
+            
           </ul>
           <div class="navbar-collapse justify-content-end px-3" id="navbarNav" >
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -185,7 +170,7 @@ $result = mysqli_query($conn, $sql);
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
+                      <i class="ti ti-key fs-6"></i>
                       <p class="mb-0 fs-3">My Account</p>
                     </a>
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
@@ -211,18 +196,12 @@ $result = mysqli_query($conn, $sql);
                 <div class="card-body">
                   <div class="d-md-flex align-items-center">
                     <div>
-                      <h4 class="card-title">RESERVATIONS</h4>
+                      <h4 class="card-title">BOOKINGS</h4>
                       <!-- <p class="card-subtitle">
                         Ample Admin Vs Pixel Admin
                       </p> -->
                     </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <select class="form-select theme-select border-0" aria-label="Default select example">
-                        <option value="1">March 2023</option>
-                        <option value="2">March 2024</option>
-                        <option value="3">March 2025</option>
-                      </select>
-                    </div>
+                   
                   </div>
                   <div class="table-responsive mt-4">
                     <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
@@ -238,7 +217,6 @@ $result = mysqli_query($conn, $sql);
                           <th scope="col" class="px-3 text-muted">Checkin</th>
                           <th scope="col" class="px-3 text-muted">Checkout</th>
                           <th scope="col" class="px-3 text-muted">Guest</th>
-                          <th scope="col" class="px-3 text-muted">Room</th>
                           <th scope="col" class="px-3 text-muted">Room-No</th>
                          <th scope="col" class="px-3 text-muted">Suite</th>
                       </thead>
@@ -288,11 +266,6 @@ $result = mysqli_query($conn, $sql);
                           </td>
                           <td class="px-3">
                             <div class="d-flex align-items-center">
-                              <?php echo $row['Room']; ?>
-                            </div>
-                          </td>
-                          <td class="px-3">
-                            <div class="d-flex align-items-center">
                               <?php echo $row['Room_No']; ?>
                             </div>
                           </td>
@@ -312,11 +285,7 @@ $result = mysqli_query($conn, $sql);
            
           
           </div>
-          <div class="py-6 px-6 text-center">
-            <p class="mb-0 fs-4">Design and Developed by <a href="#"
-                class="pe-1 text-primary text-decoration-underline">Wrappixel.com</a> Distributed by <a
-                href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
-          </div>
+         
         </div>
       </div>
     </div>

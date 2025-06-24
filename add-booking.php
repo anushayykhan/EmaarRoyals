@@ -32,10 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $checkout = $_POST['Checkout'];
     $guest = $_POST['Guest'];
     $suite = $_POST['Suite'];
-    $room = $_POST['Room'];
+    $room_no = $_POST['Room_no'];
 
-    $selected_rooms = $_POST['Room_no']; 
-    $room_no = implode(',', $selected_rooms); 
+
 
     $checkQuery = "SELECT * FROM bookings WHERE Guest_id = '$guest_id'";
     $checkResult = mysqli_query($conn, $checkQuery);
@@ -50,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         Guest = '$guest', 
                         Suite = '$suite', 
                         Room_no = '$room_no', 
-                        Room = '$room'
                         WHERE Guest_id = '$guest_id'";
 
         $isUpdated = mysqli_query($conn, $updateQuery);
@@ -63,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             echo "<script>alert('Error while updating booking.');</script>";
         }
     } else {
-        $insertQuery = "INSERT INTO bookings (Guest_id, Name, Email, Phone, Checkin, Checkout, Guest, Suite, Room_no, Room)
-                        VALUES ('$guest_id', '$name', '$email', '$phone', '$checkin', '$checkout', '$guest', '$suite', '$room_no', '$room')";
+        $insertQuery = "INSERT INTO bookings (Guest_id, Name, Email, Phone, Checkin, Checkout, Guest, Suite, Room_no,)
+                        VALUES ('$guest_id', '$name', '$email', '$phone', '$checkin', '$checkout', '$guest', '$suite', '$room_no',)";
 
         $isInserted = mysqli_query($conn, $insertQuery);
         if ($isInserted) {
@@ -88,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
-    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <title>EmaarRoyals</title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="./assets/css/styles.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
@@ -152,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./admin-dash.php" aria-expanded="false">
-                                <i class="ti ti-atom"></i>
+                                <i class="ti ti-receipt"></i>
                                 <span class="hide-menu">Reservations</span>
                             </a>
                         </li>
@@ -166,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             <a class="sidebar-link justify-content-between" href="room_status.php" aria-expanded="false">
                                 <div class="d-flex align-items-center gap-3">
                                     <span class="d-flex">
-                                        <i class="ti ti-mail"></i>
+                                        <i class="ti ti-key"></i>
                                     </span>
                                     <span class="hide-menu">Rooms</span>
                                 </div>
@@ -231,22 +229,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 <i class="ti ti-menu-2"></i>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-bell"></i>
-                                <div class="notification bg-primary rounded-circle"></div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-animate-up" aria-labelledby="drop1">
-                                <div class="message-body">
-                                    <a href="javascript:void(0)" class="dropdown-item">
-                                        Item 1
-                                    </a>
-                                    <a href="javascript:void(0)" class="dropdown-item">
-                                        Item 2
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -263,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             <p class="mb-0 fs-3">My Profile</p>
                                         </a>
                                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-mail fs-6"></i>
+                                            <i class="ti ti-key fs-6"></i>
                                             <p class="mb-0 fs-3">My Account</p>
                                         </a>
                                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
@@ -291,13 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             <div>
                                                 <h2 class="mb-3">Hotel Booking Form</h2>
                                             </div>
-                                            <div class="ms-auto mt-3 mt-md-0">
-                                                <select class="form-select theme-select border-0" aria-label="Default select example">
-                                                    <option value="1">March 2023</option>
-                                                    <option value="2">March 2024</option>
-                                                    <option value="3">March 2025</option>
-                                                </select>
-                                            </div>
+                                           
                                         </div>
 
                                         <div class="mb-3">
@@ -347,15 +323,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             <div class="mb-3 col-md-6">
                                                 <label for="room_no" class="form-label">Room Number</label>
                                                 <select name="Room_no[]" id="room_no" class="form-select" multiple required>
-                                                    <option value="101" <?php if (isset($selected_rooms) && in_array("101", $selected_rooms)) echo "selected"; ?>>101</option>
-                                                    <option value="102" <?php if (isset($selected_rooms) && in_array("102", $selected_rooms)) echo "selected"; ?>>102</option>
-                                                    <option value="103" <?php if (isset($selected_rooms) && in_array("103", $selected_rooms)) echo "selected"; ?>>103</option>
+                                                    <option value="1" <?php if (isset($selected_rooms) && in_array("1", $selected_rooms)) echo "selected"; ?>>1</option>
+                                                    <option value="2" <?php if (isset($selected_rooms) && in_array("2", $selected_rooms)) echo "selected"; ?>>2</option>
+                                                    <option value="3" <?php if (isset($selected_rooms) && in_array("3", $selected_rooms)) echo "selected"; ?>>3</option>
+                                                    <option value="4" <?php if (isset($selected_rooms) && in_array("4", $selected_rooms)) echo "selected"; ?>>4</option>
+                                                    <option value="5" <?php if (isset($selected_rooms) && in_array("5", $selected_rooms)) echo "selected"; ?>>5</option>
+                                                    <option value="6" <?php if (isset($selected_rooms) && in_array("6", $selected_rooms)) echo "selected"; ?>>6</option>
+                                                    <option value="7" <?php if (isset($selected_rooms) && in_array("7", $selected_rooms)) echo "selected"; ?>>7</option>
+                                                    <option value="8" <?php if (isset($selected_rooms) && in_array("8", $selected_rooms)) echo "selected"; ?>>8</option>
+                                                    <option value="9" <?php if (isset($selected_rooms) && in_array("9", $selected_rooms)) echo "selected"; ?>>9</option>
+                                                    <option value="10" <?php if (isset($selected_rooms) && in_array("10", $selected_rooms)) echo "selected"; ?>>10</option>
+                                                    <option value="11" <?php if (isset($selected_rooms) && in_array("11", $selected_rooms)) echo "selected"; ?>>11</option>
+                                                    <option value="12" <?php if (isset($selected_rooms) && in_array("12", $selected_rooms)) echo "selected"; ?>>12</option>
+                                                    <option value="13" <?php if (isset($selected_rooms) && in_array("13", $selected_rooms)) echo "selected"; ?>>13</option>
+                                                    <option value="14" <?php if (isset($selected_rooms) && in_array("14", $selected_rooms)) echo "selected"; ?>>14</option>
+                                                    <option value="15" <?php if (isset($selected_rooms) && in_array("15", $selected_rooms)) echo "selected"; ?>>15</option>
                                                 </select>
                                             </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="suite" class="form-label">Rooms</label>
-                                                <input type="text" name="Room" id="room" value="<?php echo $room; ?>" class="form-control" min="1" required>
-                                            </div>
+                                           
                                         </div>
 
 
@@ -372,11 +357,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
 
                 </div>
-                <div class="py-6 px-6 text-center">
-                    <p class="mb-0 fs-4">Design and Developed by <a href="#"
-                            class="pe-1 text-primary text-decoration-underline">Wrappixel.com</a> Distributed by <a
-                            href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
-                </div>
+               
             </div>
         </div>
     </div>

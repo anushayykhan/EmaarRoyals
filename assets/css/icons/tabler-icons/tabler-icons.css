@@ -1046,15 +1046,15 @@
   content: "\f0b0";
 }
 
-.ti-atom:before {
+.ti-receipt:before {
   content: "\eb79";
 }
 
-.ti-atom-2:before {
+.ti-receipt-2:before {
   content: "\ebdf";
 }
 
-.ti-atom-off:before {
+.ti-receipt-off:before {
   content: "\f0f9";
 }
 
@@ -7554,31 +7554,31 @@
   content: "\f159";
 }
 
-.ti-mail:before {
+.ti-key:before {
   content: "\eae5";
 }
 
-.ti-mail-fast:before {
+.ti-key-fast:before {
   content: "\f069";
 }
 
-.ti-mail-forward:before {
+.ti-key-forward:before {
   content: "\eeac";
 }
 
-.ti-mail-off:before {
+.ti-key-off:before {
   content: "\f15a";
 }
 
-.ti-mail-opened:before {
+.ti-key-opened:before {
   content: "\eae4";
 }
 
-.ti-mailbox:before {
+.ti-keybox:before {
   content: "\eead";
 }
 
-.ti-mailbox-off:before {
+.ti-keybox-off:before {
   content: "\f15b";
 }
 

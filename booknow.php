@@ -162,18 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
                   <div class="row">
-                    <div class="col-md-6 form-group">
-                      <label for="room">Room</label>
-                      <select name="Room" id="room" class="form-control">
-                        <option value="1 Room">1 Room</option>
-                        <option value="2 Rooms">2 Rooms</option>
-                        <option value="3 Rooms">3 Rooms</option>
-                        <option value="4 Rooms">4 Rooms</option>
-                        <option value="5 Rooms">5 Rooms</option>
-                      </select>
-                    </div>
+                    
 
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                       <label for="room">Guests</label>
                       <select name="Guest" id="guest" class="form-control">
                         <option value="1 Guest">1 Guest</option>
