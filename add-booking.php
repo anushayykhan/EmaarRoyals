@@ -1,7 +1,9 @@
 <?php
 include('inc.connection.php');
 
-$guest_id = $name = $email = $phone = $checkin = $checkout = $guest = $suite = $room_no = $room =  '';
+// Initialize variables
+$guest_id = $name = $email = $phone = $checkin = $checkout = $guest = $suite = $room_no = $room = '';
+$selected_rooms = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['guest_id'])) {
     $guest_id = $_GET['guest_id'];
@@ -18,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['guest_id'])) {
         $suite = $user['Suite'];
         $room = $user['Room'];
         $room_no = $user['Room_no'];
-        $selected_rooms = explode(',', $room_no); 
+        $selected_rooms = explode(',', $room_no);
     }
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    // Capture POST data
     $guest_id = $_POST['Guest_id'];
     $name = $_POST['Name'];
     $email = $_POST['Email'];
@@ -34,12 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $suite = $_POST['Suite'];
     $room_no = $_POST['Room_no'];
 
+    // Convert Room_no to comma-separated string if it's an array
+    if (is_array($room_no)) {
+        $room_no_str = implode(',', $room_no);
+    } else {
+        $room_no_str = $room_no;
+    }
 
-
+    // Check if booking already exists
     $checkQuery = "SELECT * FROM bookings WHERE Guest_id = '$guest_id'";
     $checkResult = mysqli_query($conn, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {
+        // Update existing booking
         $updateQuery = "UPDATE bookings SET 
                         Name = '$name', 
                         Email = '$email', 
@@ -48,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         Checkout = '$checkout', 
                         Guest = '$guest', 
                         Suite = '$suite', 
-                        Room_no = '$room_no', 
+                        Room_no = '$room_no_str'
                         WHERE Guest_id = '$guest_id'";
 
         $isUpdated = mysqli_query($conn, $updateQuery);
@@ -61,8 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             echo "<script>alert('Error while updating booking.');</script>";
         }
     } else {
-        $insertQuery = "INSERT INTO bookings (Guest_id, Name, Email, Phone, Checkin, Checkout, Guest, Suite, Room_no,)
-                        VALUES ('$guest_id', '$name', '$email', '$phone', '$checkin', '$checkout', '$guest', '$suite', '$room_no',)";
+        // Insert new booking
+        $insertQuery = "INSERT INTO bookings 
+                        (Guest_id, Name, Email, Phone, Checkin, Checkout, Guest, Suite, Room_no)
+                        VALUES 
+                        ('$guest_id', '$name', '$email', '$phone', '$checkin', '$checkout', '$guest', '$suite', '$room_no_str')";
 
         $isInserted = mysqli_query($conn, $insertQuery);
         if ($isInserted) {
@@ -75,9 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         }
     }
 }
-
-
 ?>
+
 
 
 <!doctype html>
